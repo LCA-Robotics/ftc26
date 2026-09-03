@@ -14,12 +14,9 @@ public class MathHelper {
         return abs(a - b) < EPSILON;
     }
 
-    public static double easeInCubic(double t) {
-        return t * t * t;
-    }
-
-    public static double easeOutCubic(double t) {
-        return 1 - pow(1 - t, 3);
+    public static double easeInOutSine(double x0, double x1, double t) {
+        double dx = x1 - x0;
+        return - ( dx * ( cos( PI * ( ( t - x0 ) / dx ) ) - 1 ) ) / 2 ;
     }
 
 }
