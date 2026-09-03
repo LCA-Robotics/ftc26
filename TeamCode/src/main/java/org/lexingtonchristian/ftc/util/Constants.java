@@ -5,11 +5,16 @@ import com.qualcomm.robotcore.hardware.IMU;
 
 public class Constants {
 
-    public static final double MAX_ACCELERATION = 2.0; // TODO: test & refine as necessary
-
     public static final IMU.Parameters IMU_PARAMETERS = new IMU.Parameters(new RevHubOrientationOnRobot(
             RevHubOrientationOnRobot.LogoFacingDirection.BACKWARD,
             RevHubOrientationOnRobot.UsbFacingDirection.UP
     ));
+
+    public static final String BACK_LEFT = "backLeft";
+    public static final String BACK_RIGHT = "backRight";
+    public static final String FRONT_LEFT = "frontLeft";
+    public static final String FRONT_RIGHT = "frontRight";
+
+    public static final String INTAKE = "intake";
 
 }

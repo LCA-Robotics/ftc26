@@ -7,9 +7,13 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.lexingtonchristian.ftc.choreo.Snapshot;
 import org.lexingtonchristian.ftc.util.Constants;
 
 import static java.lang.Math.*;
+
+import java.util.List;
+import java.util.Map;
 
 public class Drivetrain {
 
@@ -24,10 +28,10 @@ public class Drivetrain {
 
     public Drivetrain(HardwareMap map) {
 
-        backLeft = (DcMotorEx) map.get(DcMotor.class, "backLeft");
-        backRight = (DcMotorEx) map.get(DcMotor.class, "backRight");
-        frontLeft = (DcMotorEx) map.get(DcMotor.class, "frontLeft");
-        frontRight = (DcMotorEx) map.get(DcMotor.class, "frontRight");
+        backLeft = (DcMotorEx) map.get(DcMotor.class, Constants.BACK_LEFT);
+        backRight = (DcMotorEx) map.get(DcMotor.class,Constants.BACK_RIGHT);
+        frontLeft = (DcMotorEx) map.get(DcMotor.class,Constants.FRONT_LEFT);
+        frontRight = (DcMotorEx) map.get(DcMotor.class, Constants.FRONT_RIGHT);
 
         backRight.setDirection(DcMotorSimple.Direction.REVERSE);
         frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -49,19 +53,19 @@ public class Drivetrain {
 
         double heading = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
 
-        double x1 = x0;
         double y1 = y0;
+        double x1 = x0;
         if (fieldCentric) {
-            x1 = ( x0 * cos(heading) ) - ( y0 * sin(heading) );
-            y1 = ( x0 * sin(heading) ) + ( y0 * cos(heading) );
+            y1 = ( y0 * cos(heading) ) - ( x0 * sin(heading) );
+            x1 = ( y0 * sin(heading) ) + ( x0 * cos(heading) );
         }
 
-        double m = max(abs(x0) + abs(y0) + abs(r0), 1);
+        double m = max(abs(y0) + abs(x0) + abs(r0), 1);
 
-        double backLeftPower   = (x1 - y1 - r0) / m;
-        double backRightPower  = (x1 + y1 + r0) / m;
-        double frontLeftPower  = (x1 + y1 - r0) / m;
-        double frontRightPower = (x1 - y1 + r0) / m;
+        double backLeftPower   = (y1 - x1 - r0) / m;
+        double backRightPower  = (y1 + x1 + r0) / m;
+        double frontLeftPower  = (y1 + x1 - r0) / m;
+        double frontRightPower = (y1 - x1 + r0) / m;
 
         backLeft.setPower(backLeftPower);
         backRight.setPower(backRightPower);
