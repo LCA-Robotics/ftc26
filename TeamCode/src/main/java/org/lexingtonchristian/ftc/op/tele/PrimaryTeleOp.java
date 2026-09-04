@@ -35,9 +35,9 @@ public class PrimaryTeleOp extends OpMode {
         if (currentGamepad.options && !previousGamepad.options) drivetrain.resetHeading();
         if (currentGamepad.back && !previousGamepad.back) drivetrain.toggleFieldCentric();
 
-        double x = currentGamepad.left_stick_x;
-        double y = currentGamepad.left_stick_y * -1;
-        double r = currentGamepad.right_stick_x;
+        double x = currentGamepad.left_stick_x * -1; // left/right
+        double y = currentGamepad.left_stick_y * -1; // forward/backward
+        double r = currentGamepad.right_stick_x;     // rotate
 
         boolean runIntake = currentGamepad.right_trigger_pressed;
 

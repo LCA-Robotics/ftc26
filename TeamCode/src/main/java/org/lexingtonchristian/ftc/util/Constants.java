@@ -17,7 +17,7 @@ public class Constants {
 
     public static final String INTAKE = "intake";
 
-    public static final int INTAKE_VELOCITY = 850;
-    public static final long INTAKE_SPINUP_MS = 1000;
+    public static final int INTAKE_VELOCITY = 1200;
+    public static final long INTAKE_SPINUP_MS = 600;
 
 }
