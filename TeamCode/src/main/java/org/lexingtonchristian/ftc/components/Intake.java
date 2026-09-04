@@ -4,10 +4,11 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.lexingtonchristian.ftc.choreo.Snapshot;
 import org.lexingtonchristian.ftc.util.Constants;
 import org.lexingtonchristian.ftc.util.MathHelper;
 
-public class Intake {
+public class Intake implements ChoreoDevice {
 
     private final DcMotorEx motor;
 
@@ -49,6 +50,17 @@ public class Intake {
                 (double) activeDuration / (double) Constants.INTAKE_SPINUP_MS
         ));
 
+    }
+
+    @Override
+    public Snapshot writeValues(Snapshot snapshot) {
+        snapshot.addCapture(Constants.INTAKE, motor.getPower());
+        return snapshot;
+    }
+
+    @Override
+    public void readValues(Snapshot snapshot) {
+        motor.setPower(snapshot.getValue(Constants.INTAKE));
     }
 
 }

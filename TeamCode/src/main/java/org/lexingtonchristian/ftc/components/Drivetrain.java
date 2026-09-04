@@ -15,7 +15,7 @@ import static java.lang.Math.*;
 import java.util.List;
 import java.util.Map;
 
-public class Drivetrain {
+public class Drivetrain implements ChoreoDevice {
 
     private final DcMotorEx backLeft;
     private final DcMotorEx backRight;
@@ -72,6 +72,23 @@ public class Drivetrain {
         frontLeft.setPower(frontLeftPower);
         frontRight.setPower(frontRightPower);
 
+    }
+
+    @Override
+    public Snapshot writeValues(Snapshot snapshot) {
+        snapshot.addCapture(Constants.BACK_LEFT, backLeft.getPower());
+        snapshot.addCapture(Constants.BACK_RIGHT, backRight.getPower());
+        snapshot.addCapture(Constants.FRONT_LEFT, frontLeft.getPower());
+        snapshot.addCapture(Constants.FRONT_RIGHT, frontRight.getPower());
+        return snapshot;
+    }
+
+    @Override
+    public void readValues(Snapshot snapshot) {
+        backLeft.setPower(snapshot.getValue(Constants.BACK_LEFT));
+        backRight.setPower(snapshot.getValue(Constants.BACK_RIGHT));
+        frontLeft.setPower(snapshot.getValue(Constants.FRONT_LEFT));
+        frontRight.setPower(snapshot.getValue(Constants.FRONT_RIGHT));
     }
 
 }
