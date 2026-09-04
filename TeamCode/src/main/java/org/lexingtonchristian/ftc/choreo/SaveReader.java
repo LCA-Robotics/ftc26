@@ -19,32 +19,42 @@ public class SaveReader {
 
     public SaveReader(String filename) throws IOException {
 
-        this.file = new File(filename);
-        if (!file.isAbsolute()) this.file = new File(AppUtil.ROBOT_DATA_DIR, filename);
+        file = new File(filename);
+        if (!file.isAbsolute()) file = new File(AppUtil.ROBOT_DATA_DIR, filename);
 
         File directory = file.getParentFile();
         AppUtil.getInstance().ensureDirectoryExists(directory);
 
-        this.reader = new BufferedReader(new FileReader(file));
+        reader = new BufferedReader(new FileReader(file));
 
     }
 
-    public Map<String, Double> readSnapshot() throws IOException {
+    public Snapshot readSnapshot() throws IOException {
 
-        Map<String, Double> snapshot = new HashMap<>();
+        long ms;
+        Map<String, Double> values = new HashMap<>();
 
         String line = reader.readLine();
         if (line == null) return null;
-        String[] raw = line.split(",");
+        String[] timeAndValues = line.split("/");
 
-        for (String motor : raw) {
-            String[] info = motor.split(":");
-            if (info.length < 2) break;
-            snapshot.put(info[0], Double.parseDouble(info[1]));
+        ms = Long.parseLong(timeAndValues[0]);
+        String[] keyValuePairs = timeAndValues[1].split(",");
+        for (String pair : keyValuePairs) {
+            String[] keyValue = pair.split(":");
+            String name = keyValue[0];
+            double value = Double.parseDouble(keyValue[1]);
+            values.put(name, value);
         }
 
-        return snapshot;
+        return new Snapshot(ms, values);
 
+    }
+
+    public void close() {
+        try {
+            reader.close();
+        } catch (IOException ignored) {}
     }
 
 }
