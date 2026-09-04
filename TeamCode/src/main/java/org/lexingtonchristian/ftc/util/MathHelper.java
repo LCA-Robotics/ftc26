@@ -15,8 +15,7 @@ public class MathHelper {
     }
 
     public static double easeInOutSine(double x0, double x1, double t) {
-        double dx = x1 - x0;
-        return - ( dx * ( cos( PI * ( ( t - x0 ) / dx ) ) - 1 ) ) / 2 ;
+        return - ( ( (x1 - x0) * ( cos( PI * t ) - 1 ) ) / 2 ) + x0;
     }
 
 }

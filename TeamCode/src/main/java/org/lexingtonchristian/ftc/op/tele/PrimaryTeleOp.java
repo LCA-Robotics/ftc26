@@ -5,11 +5,13 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.lexingtonchristian.ftc.components.Drivetrain;
+import org.lexingtonchristian.ftc.components.Intake;
 
 @TeleOp(name = "Primary", group = "Competition")
 public class PrimaryTeleOp extends OpMode {
 
     private Drivetrain drivetrain;
+    private Intake intake;
 
     private final Gamepad currentGamepad = new Gamepad();
     private final Gamepad previousGamepad = new Gamepad();
@@ -18,6 +20,7 @@ public class PrimaryTeleOp extends OpMode {
     public void init() {
 
         drivetrain = new Drivetrain(hardwareMap);
+        intake = new Intake(hardwareMap);
 
         currentGamepad.copy(gamepad1);
 
@@ -36,7 +39,12 @@ public class PrimaryTeleOp extends OpMode {
         double y = currentGamepad.left_stick_y * -1;
         double r = currentGamepad.right_stick_x;
 
+        boolean runIntake = currentGamepad.right_trigger_pressed;
+
         drivetrain.drive(x, y, r);
+
+        intake.setActive(runIntake);
+        intake.tick();
 
     }
 
