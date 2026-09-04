@@ -1,7 +1,6 @@
 package org.lexingtonchristian.ftc.op.choreo.load;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.lexingtonchristian.ftc.choreo.SaveReader;
 import org.lexingtonchristian.ftc.choreo.Snapshot;
@@ -14,9 +13,6 @@ public abstract class LoadChoreo extends OpMode {
 
     private Drivetrain drivetrain;
     private Intake intake;
-
-    private final Gamepad currentGamepad = new Gamepad();
-    private final Gamepad previousGamepad = new Gamepad();
 
     private SaveReader reader;
 

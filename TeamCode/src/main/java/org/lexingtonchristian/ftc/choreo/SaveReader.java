@@ -6,10 +6,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class SaveReader {
@@ -41,10 +38,14 @@ public class SaveReader {
         ms = Long.parseLong(timeAndValues[0]);
         String[] keyValuePairs = timeAndValues[1].split(",");
         for (String pair : keyValuePairs) {
+
             String[] keyValue = pair.split(":");
+
             String name = keyValue[0];
             double value = Double.parseDouble(keyValue[1]);
+
             values.put(name, value);
+
         }
 
         return new Snapshot(ms, values);

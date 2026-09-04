@@ -1,7 +1,5 @@
 package org.lexingtonchristian.ftc.choreo;
 
-import com.qualcomm.robotcore.hardware.HardwareMap;
-
 import org.firstinspires.ftc.robotcore.internal.system.AppUtil;
 
 import java.io.BufferedWriter;

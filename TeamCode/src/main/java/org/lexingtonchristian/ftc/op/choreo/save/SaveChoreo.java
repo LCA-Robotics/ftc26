@@ -1,18 +1,14 @@
 package org.lexingtonchristian.ftc.op.choreo.save;
 
-import com.qualcomm.hardware.lynx.LynxModule;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
-import org.lexingtonchristian.ftc.choreo.SaveReader;
 import org.lexingtonchristian.ftc.choreo.SaveWriter;
 import org.lexingtonchristian.ftc.choreo.Snapshot;
 import org.lexingtonchristian.ftc.components.Drivetrain;
 import org.lexingtonchristian.ftc.components.Intake;
 
 import java.io.IOException;
-import java.util.List;
 
 public abstract class SaveChoreo extends OpMode {
 

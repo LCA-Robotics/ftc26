@@ -1,5 +1,10 @@
 package org.lexingtonchristian.ftc.components;
 
+import static java.lang.Math.abs;
+import static java.lang.Math.cos;
+import static java.lang.Math.max;
+import static java.lang.Math.sin;
+
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -9,11 +14,6 @@ import com.qualcomm.robotcore.hardware.IMU;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.lexingtonchristian.ftc.choreo.Snapshot;
 import org.lexingtonchristian.ftc.util.Constants;
-
-import static java.lang.Math.*;
-
-import java.util.List;
-import java.util.Map;
 
 public class Drivetrain implements ChoreoDevice {
 
