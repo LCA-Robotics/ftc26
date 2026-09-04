@@ -27,7 +27,7 @@ public abstract class LoadChoreo extends OpMode {
         intake = new Intake(hardwareMap);
 
         try {
-            reader = new SaveReader(getName());
+            reader = new SaveReader(getName() + ".choreo");
         } catch (IOException ignored) {}
 
     }

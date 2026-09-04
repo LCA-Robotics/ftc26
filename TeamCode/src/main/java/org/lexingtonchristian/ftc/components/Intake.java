@@ -2,6 +2,7 @@ package org.lexingtonchristian.ftc.components;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.lexingtonchristian.ftc.choreo.Snapshot;
@@ -17,8 +18,14 @@ public class Intake implements ChoreoDevice {
     private long activeDuration;
 
     public Intake(HardwareMap map) {
+
         motor = (DcMotorEx) map.get(DcMotor.class, Constants.INTAKE);
+        motor.setDirection(DcMotorSimple.Direction.FORWARD);
+
         active = false;
+        startTime = 0;
+        activeDuration = 0;
+
     }
 
     public void setActive(boolean active) {

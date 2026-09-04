@@ -19,8 +19,8 @@ public abstract class SaveChoreo extends OpMode {
     private Drivetrain drivetrain;
     private Intake intake;
 
-    private Gamepad currentGamepad = new Gamepad();
-    private Gamepad previousGamepad = new Gamepad();
+    private final Gamepad currentGamepad = new Gamepad();
+    private final Gamepad previousGamepad = new Gamepad();
 
     private SaveWriter writer;
 
@@ -31,7 +31,7 @@ public abstract class SaveChoreo extends OpMode {
         intake = new Intake(hardwareMap);
 
         try {
-            writer = new SaveWriter(getName());
+            writer = new SaveWriter(getName() + ".choreo");
         } catch (IOException ignored) {}
 
         currentGamepad.copy(gamepad1);
