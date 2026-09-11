@@ -1,16 +1,14 @@
 package org.lexingtonchristian.ftc.op.choreo;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.lexingtonchristian.ftc.choreo.SaveWriter;
 import org.lexingtonchristian.ftc.choreo.Snapshot;
-import org.lexingtonchristian.ftc.components.Drivetrain;
-import org.lexingtonchristian.ftc.components.Intake;
+import org.lexingtonchristian.ftc.op.tele.PrimaryTeleOp;
 
 import java.io.IOException;
 
-public class SaveChoreo extends OpMode {
+public class SaveChoreo extends PrimaryTeleOp {
 
     private final String name;
 
@@ -23,36 +21,18 @@ public class SaveChoreo extends OpMode {
     @Override
     public void init() {
 
-        drivetrain = new Drivetrain(hardwareMap);
-        intake = new Intake(hardwareMap);
+        super.init();
 
         try {
             writer = new SaveWriter(name + ".choreo");
         } catch (IOException ignored) {}
-
-        currentGamepad.copy(gamepad1);
 
     }
 
     @Override
     public void loop() {
 
-        previousGamepad.copy(currentGamepad);
-        currentGamepad.copy(gamepad1);
-
-        if (currentGamepad.options && !previousGamepad.options) drivetrain.resetHeading();
-        if (currentGamepad.back && !previousGamepad.back) drivetrain.toggleFieldCentric();
-
-        double x = currentGamepad.left_stick_x;
-        double y = currentGamepad.left_stick_y * -1;
-        double r = currentGamepad.right_stick_x;
-
-        boolean runIntake = currentGamepad.right_trigger_pressed;
-
-        drivetrain.drive(x, y, r);
-
-        intake.setActive(runIntake);
-        intake.tick();
+        super.loop();
 
         try {
 

@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.IMU;
 public class Constants {
 
     public static final IMU.Parameters IMU_PARAMETERS = new IMU.Parameters(new RevHubOrientationOnRobot(
-            RevHubOrientationOnRobot.LogoFacingDirection.BACKWARD,
+            RevHubOrientationOnRobot.LogoFacingDirection.FORWARD,
             RevHubOrientationOnRobot.UsbFacingDirection.UP
     ));
 
@@ -18,6 +18,5 @@ public class Constants {
     public static final String INTAKE = "intake";
 
     public static final int INTAKE_VELOCITY = 1200;
-    public static final long INTAKE_SPINUP_MS = 600;
 
 }

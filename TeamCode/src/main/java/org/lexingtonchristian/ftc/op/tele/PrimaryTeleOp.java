@@ -10,11 +10,11 @@ import org.lexingtonchristian.ftc.components.Intake;
 @TeleOp(name = "Primary", group = "Competition")
 public class PrimaryTeleOp extends OpMode {
 
-    private Drivetrain drivetrain;
-    private Intake intake;
+    protected Drivetrain drivetrain;
+    protected Intake intake;
 
-    private final Gamepad currentGamepad = new Gamepad();
-    private final Gamepad previousGamepad = new Gamepad();
+    protected final Gamepad currentGamepad = new Gamepad();
+    protected final Gamepad previousGamepad = new Gamepad();
 
     @Override
     public void init() {
@@ -39,12 +39,10 @@ public class PrimaryTeleOp extends OpMode {
         double y = currentGamepad.left_stick_y * -1; // forward/backward
         double r = currentGamepad.right_stick_x;     // rotate
 
-        boolean runIntake = currentGamepad.right_trigger_pressed;
+        boolean active = currentGamepad.left_trigger_pressed;
 
         drivetrain.drive(x, y, r);
-
-        intake.setActive(runIntake);
-        intake.tick();
+        intake.set(active);
 
     }
 
