@@ -1,4 +1,4 @@
-package org.lexingtonchristian.ftc.op.choreo.save;
+package org.lexingtonchristian.ftc.op.choreo;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.Gamepad;
@@ -10,15 +10,15 @@ import org.lexingtonchristian.ftc.components.Intake;
 
 import java.io.IOException;
 
-public abstract class SaveChoreo extends OpMode {
+public class SaveChoreo extends OpMode {
 
-    private Drivetrain drivetrain;
-    private Intake intake;
-
-    private final Gamepad currentGamepad = new Gamepad();
-    private final Gamepad previousGamepad = new Gamepad();
+    private final String name;
 
     private SaveWriter writer;
+
+    public SaveChoreo(String name) {
+        this.name = name;
+    }
 
     @Override
     public void init() {
@@ -27,7 +27,7 @@ public abstract class SaveChoreo extends OpMode {
         intake = new Intake(hardwareMap);
 
         try {
-            writer = new SaveWriter(getName() + ".choreo");
+            writer = new SaveWriter(name + ".choreo");
         } catch (IOException ignored) {}
 
         currentGamepad.copy(gamepad1);
@@ -69,7 +69,5 @@ public abstract class SaveChoreo extends OpMode {
     public void stop() {
         writer.close();
     }
-
-    public abstract String getName();
 
 }
