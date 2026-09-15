@@ -7,7 +7,6 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.lexingtonchristian.ftc.choreo.Snapshot;
 import org.lexingtonchristian.ftc.util.Constants;
-import org.lexingtonchristian.ftc.util.MathHelper;
 
 public class Intake implements ChoreoDevice {
 

@@ -3,12 +3,8 @@ package org.lexingtonchristian.ftc.op.choreo;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.lexingtonchristian.ftc.choreo.Choreographer;
-import org.lexingtonchristian.ftc.choreo.SaveReader;
-import org.lexingtonchristian.ftc.choreo.Snapshot;
 import org.lexingtonchristian.ftc.components.Drivetrain;
 import org.lexingtonchristian.ftc.components.Intake;
-
-import java.io.IOException;
 
 public class LoadChoreo extends OpMode {
 
