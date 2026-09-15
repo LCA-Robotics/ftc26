@@ -29,8 +29,8 @@ public class Drivetrain implements ChoreoDevice {
     public Drivetrain(HardwareMap map) {
 
         backLeft = (DcMotorEx) map.get(DcMotor.class, Constants.BACK_LEFT);
-        backRight = (DcMotorEx) map.get(DcMotor.class,Constants.BACK_RIGHT);
-        frontLeft = (DcMotorEx) map.get(DcMotor.class,Constants.FRONT_LEFT);
+        backRight = (DcMotorEx) map.get(DcMotor.class, Constants.BACK_RIGHT);
+        frontLeft = (DcMotorEx) map.get(DcMotor.class, Constants.FRONT_LEFT);
         frontRight = (DcMotorEx) map.get(DcMotor.class, Constants.FRONT_RIGHT);
 
         backRight.setDirection(DcMotorSimple.Direction.REVERSE);

@@ -19,4 +19,9 @@ public class Constants {
 
     public static final int INTAKE_VELOCITY = 1200;
 
+    public static final TagCluster RED_SCORING = new TagCluster(30);
+    public static final TagCluster RED_AUDIENCE = new TagCluster(34);
+    public static final TagCluster BLUE_AUDIENCE = new TagCluster(38);
+    public static final TagCluster BLUE_SCORING = new TagCluster(42);
+
 }
