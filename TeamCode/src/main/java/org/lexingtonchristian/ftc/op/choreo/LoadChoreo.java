@@ -2,6 +2,7 @@ package org.lexingtonchristian.ftc.op.choreo;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
+import org.lexingtonchristian.ftc.choreo.Choreographer;
 import org.lexingtonchristian.ftc.choreo.SaveReader;
 import org.lexingtonchristian.ftc.choreo.Snapshot;
 import org.lexingtonchristian.ftc.components.Drivetrain;
@@ -11,48 +12,34 @@ import java.io.IOException;
 
 public class LoadChoreo extends OpMode {
 
-    private final String name;
+    private final Choreographer choreographer;
 
-    private Drivetrain drivetrain;
-    private Intake intake;
-
-    private SaveReader reader;
+    private volatile Drivetrain drivetrain;
+    private volatile Intake intake;
 
     public LoadChoreo(String name) {
-        this.name = name;
+        choreographer = new Choreographer(name);
     }
 
     @Override
     public void init() {
-
         drivetrain = new Drivetrain(hardwareMap);
         intake = new Intake(hardwareMap);
+    }
 
-        try {
-            reader = new SaveReader(name + ".choreo");
-        } catch (IOException ignored) {}
-
+    @Override
+    public void start() {
+        choreographer.initReadTask(drivetrain, intake);
     }
 
     @Override
     public void loop() {
-
-        try {
-
-            Snapshot snapshot = reader.readSnapshot();
-            while (snapshot != null) {
-                drivetrain.readValues(snapshot);
-                intake.readValues(snapshot);
-                snapshot = reader.readSnapshot();
-            }
-
-        } catch (IOException ignored) {}
-
+        Thread.yield();
     }
 
     @Override
     public void stop() {
-        reader.close();
+        choreographer.close();
     }
 
 }
