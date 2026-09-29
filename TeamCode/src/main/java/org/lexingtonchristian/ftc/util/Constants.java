@@ -5,6 +5,8 @@ import com.qualcomm.robotcore.hardware.IMU;
 
 public class Constants {
 
+    public static final long CHOREO_INTERVAL = 50;
+
     public static final IMU.Parameters IMU_PARAMETERS = new IMU.Parameters(new RevHubOrientationOnRobot(
             RevHubOrientationOnRobot.LogoFacingDirection.FORWARD,
             RevHubOrientationOnRobot.UsbFacingDirection.UP
