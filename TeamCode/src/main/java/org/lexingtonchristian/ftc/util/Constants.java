@@ -12,6 +12,8 @@ public class Constants {
             RevHubOrientationOnRobot.UsbFacingDirection.UP
     ));
 
+    public static final double TICKS_PER_REV = 537.7;
+
     public static final String BACK_LEFT = "backLeft";
     public static final String BACK_RIGHT = "backRight";
     public static final String FRONT_LEFT = "frontLeft";
