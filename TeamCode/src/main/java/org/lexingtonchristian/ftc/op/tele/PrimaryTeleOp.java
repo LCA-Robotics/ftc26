@@ -39,9 +39,11 @@ public class PrimaryTeleOp extends OpMode {
         double y = currentGamepad.left_stick_y * -1; // forward/backward
         double r = currentGamepad.right_stick_x;     // rotate
 
+        double q = currentGamepad.right_bumper ? 0.30 : 0.70;
+
         boolean active = currentGamepad.left_trigger_pressed;
 
-        drivetrain.drive(x, y, r);
+        drivetrain.drive(x, y, r, q);
         intake.set(active);
 
     }

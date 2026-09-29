@@ -33,8 +33,8 @@ public class Drivetrain implements ChoreoDevice {
         frontLeft = (DcMotorEx) map.get(DcMotor.class, Constants.FRONT_LEFT);
         frontRight = (DcMotorEx) map.get(DcMotor.class, Constants.FRONT_RIGHT);
 
+        frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         backRight.setDirection(DcMotorSimple.Direction.REVERSE);
-        frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
 
         imu = map.get(IMU.class, "imu");
         imu.initialize(Constants.IMU_PARAMETERS);
@@ -49,7 +49,14 @@ public class Drivetrain implements ChoreoDevice {
         imu.resetYaw();
     }
 
-    public void drive(double x0, double y0, double r0) {
+
+    /**
+     * @param x0 lateral motion
+     * @param y0 longitudinal motion
+     * @param r0 rotational motion
+     * @param q speed factor
+     */
+    public void drive(double x0, double y0, double r0, double q) {
 
         double heading = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
 
@@ -62,10 +69,10 @@ public class Drivetrain implements ChoreoDevice {
 
         double m = max(abs(y0) + abs(x0) + abs(r0), 1);
 
-        double backLeftPower   = (y1 - x1 - r0) / m;
-        double backRightPower  = (y1 + x1 + r0) / m;
-        double frontLeftPower  = (y1 + x1 - r0) / m;
-        double frontRightPower = (y1 - x1 + r0) / m;
+        double backLeftPower   = (q * ( y1 - x1 - r0)) / m;
+        double backRightPower  = (q * ( y1 + x1 + r0)) / m;
+        double frontLeftPower  = (q * (-y1 + x1 - r0)) / m;
+        double frontRightPower = (q * (-y1 - x1 + r0)) / m;
 
         backLeft.setPower(backLeftPower);
         backRight.setPower(backRightPower);
